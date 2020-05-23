@@ -1,0 +1,11 @@
+<h1>S'enregistrer</h1>
+<a href="/">Retourner à l'accueil</a>
+<a href="/login">Se connecter</a>
+<%= form_tag "/register", method: :post do %>
+  <input type="text" name="email" />
+  <input type="text" name="username" />
+  <input type="password" name="password" />
+  <input type="submit" value="S'enregistrer" />
+<% end %>
+<div><%= flash[:info] %></div>
+<%= yield %>

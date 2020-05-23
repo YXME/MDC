@@ -1,0 +1,27 @@
+<%= image_tag "Cover.jpg", width: "10%", height: "10%" %>
+
+<p>Titre:<%= @selRef.titre %></p>
+<p>Sous Titre:<%= @selRef.sousTitre %></p>
+<p>Titre Original:<%= @selRef.orgTitre %></p>
+
+<% if @selRef.isManga then %>
+    <p>Statut de parution:<%= @selRef.parStatus %></p>
+    <% if @selRef.isFr then %>
+        <p>Nombre de volumes:<%= @selRef.nbVolFr %></p>
+        <p>Edition:<%= @Editeur.nom %></p>
+    <% else %>
+        <p>Nombre de volumes:<%= @selRef.nbVolJp %></p>
+    <% end %>
+<% end %>
+
+<% if @selRef.isAnime then %>
+    <p>Statut de diffusion:<%= @selRef.difStatus %></p>
+    <p>Studio:<%= @Studio.nom %></p>
+    <p>Nombre total d'épisodes:<%= @selRef.nbEpTotal %></p>
+    <p>Nombre d'OAV et de Films :<%= @selRef.nbOAVTotal %>, <%= @selRef.nbFilmsTotal %></p>
+    <% if @selRef.isLicenced then %>
+        <p>Licencié par:<%= @Licencer.nom %></p>
+    <% end %>
+<% end %>
+
+<p>Licence:<%= @Licence.nom %></p>
