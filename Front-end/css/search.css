@@ -1,0 +1,14 @@
+.search-input {
+    display: flex;
+    align-items: center;
+}
+
+.search-input input {
+    width: 64vw;
+    height: 4vw;
+}
+
+.search-input button {
+    height: 5vw;
+    width: 5vw;
+}
