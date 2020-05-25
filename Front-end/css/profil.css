@@ -1,0 +1,16 @@
+.categories .title{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding-right: 1%;
+  align-items: baseline;
+
+}
+.categories h6{
+  border:none;
+}
+
+.user img{
+  height: 20vh;
+  width: 10vw;
+}
