@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_22_200755) do
+ActiveRecord::Schema.define(version: 2020_05_26_150422) do
+
+  create_table "affiliates", force: :cascade do |t|
+    t.integer "reference_id", null: false
+    t.string "link", null: false
+    t.string "imageUrl", null: false
+    t.integer "orderNb", null: false
+  end
 
   create_table "commentaires", force: :cascade do |t|
     t.integer "utilisateur_id", null: false
@@ -35,6 +42,7 @@ ActiveRecord::Schema.define(version: 2020_05_22_200755) do
   create_table "listes", force: :cascade do |t|
     t.string "name"
     t.integer "contents_id"
+    t.integer "utilisateur_id", null: false
   end
 
   create_table "references", force: :cascade do |t|
@@ -42,25 +50,24 @@ ActiveRecord::Schema.define(version: 2020_05_22_200755) do
     t.string "sousTitre", limit: 50
     t.string "orgTitre", null: false
     t.string "url", null: false
-    t.string "imageUrl", null: false
+    t.string "imageUrl"
     t.text "synopsis", limit: 3000, null: false
     t.integer "licence_id"
     t.decimal "note", precision: 1
-    t.boolean "isManga", null: false
-    t.boolean "isFr", null: false
+    t.boolean "isManga", default: false, null: false
+    t.boolean "isFr", default: false, null: false
     t.string "parStatus"
     t.integer "nbVolFr"
     t.integer "nbVolJp"
     t.integer "edition_id"
-    t.boolean "isAnime", null: false
-    t.boolean "isLicenced", null: false
+    t.boolean "isAnime", default: false, null: false
+    t.boolean "isLicenced", default: false, null: false
     t.string "difStatus"
     t.integer "nbEpTotal"
     t.integer "nbOAVTotal"
     t.integer "nbFilmsTotal"
     t.integer "studio_id"
     t.integer "licencer_id"
-    t.integer "comments_id"
     t.boolean "isSponso", default: false, null: false
     t.boolean "isValidated", default: false, null: false
   end
@@ -73,9 +80,10 @@ ActiveRecord::Schema.define(version: 2020_05_22_200755) do
     t.string "email", null: false
     t.string "username", null: false
     t.string "password", null: false
-    t.string "pdpUrl", null: false
+    t.string "pdpUrl"
     t.integer "NbCom", null: false
-    t.integer "listes_id"
+    t.string "role", default: "user", null: false
+    t.string "bio", default: "Moi aussi, j'ai mon profil sur MDC !"
   end
 
 end

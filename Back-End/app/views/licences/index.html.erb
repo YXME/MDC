@@ -1,0 +1,21 @@
+<%= stylesheet_link_tag "lists_back" %>
+<%= image_tag "Logos/MDC2.png", width: "50%" %>
+<header>
+  <ul>
+    <li><%= link_to "Références", "/references/index" %></li>
+    <li><%= link_to "Studios", "/studios/index" %></li>
+    <li><%= link_to "Editeurs", "/editeurs/index" %></li>
+    <li><%= link_to "Licences", "index" %></li>
+    <li><%= link_to "Propriétaire de licences", "/licencers/index" %></li>
+    <li><%= link_to "Utilisateurs", "/users/index" %></li>
+    <li><%= link_to "Commentaires", "/comments/index" %></li>
+  </ul>
+</header>
+<h1>Licences</h1>
+<% @allLicences.each do |selLicence| %>
+  <p><%= selLicence.nom %></p>
+  <%= form_tag "/licences/#{selLicence.id}", method: "delete" do %>
+  <input type="submit" value="Supprimer" />
+  <% end %>
+<% end %>
+<%= link_to "Ajouter une licence", "/licences/new" %>

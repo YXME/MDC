@@ -1,15 +1,102 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+body {
+    margin: 0;
+    padding-bottom : 2%;
+    display: flex;
+    font-family: Verdana, sans-serif;
+}
+
+p{
+	font-family: Verdana, sans-serif;
+	color: #1b24d1;
+	font-size: 12px;
+	text-align: center;
+}
+
+.logo{
+	width: 100%;
+    height: 100%;
+}
+
+.miniature{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+    height: 60%;
+}
+
+.icones {
+    width: 80px;
+    height: 80px;
+}
+
+
+.pub {
+	width: 30vw;
+	height: 12.5vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+nav {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image:linear-gradient(#14bdff, #0048ff);
+    width: 10%;
+    height: 100vh;
+	box-shadow: 0px 0px 5px black;
+}
+
+nav .liens {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav .liens img {
+	width: 80px;
+    height: 80px;
+    margin-top: 20%;
+    margin-bottom: 20%;
+}
+
+main {
+    margin-left: 10%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+main > article {
+    border: 1px solid black;
+    box-shadow: 0px 5px 5px black;
+    width: 70vw;
+}
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    margin: 3vh 0;
+
+}
+
+.categories .images {
+    display: flex;
+    justify-content: space-evenly;
+	align-items: flex-start;
+}
+
+.categories h5 {
+	 font-family: Verdana, sans-serif;
+	  color: #1b24d1;
+    font-size: 18px;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    margin: 0;
+    margin-bottom: 5px;
+}

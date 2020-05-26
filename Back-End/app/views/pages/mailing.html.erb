@@ -1,0 +1,30 @@
+<%= stylesheet_link_tag "mailing" %>
+<nav>
+  <div>
+    <%= image_tag "Logos/MDCnavbar.png", class:"logo", width: "10%", height: "10%" %>
+  </div>
+  <div class="liens">
+    <a href="/"><%= image_tag "Logos/home.png", class:"logo", width: "10%", height: "10%" %></a>
+    <a href="search"><%= image_tag "Logos/search.png", class:"logo", width: "10%", height: "10%" %></a>
+    <a href="login"><%= image_tag "Logos/user.png", class:"logo", width: "10%", height: "10%" %></a>
+    <a href="random"><%= image_tag "Logos/dice.png", class:"logo", width: "10%", height: "10%" %></a>
+    <a href="#"><%= image_tag "Logos/contact.png", class:"logo", width: "10%", height: "10%" %></a>
+  </div>
+</nav>
+
+<main>
+  <article class="categories">
+    <h5>CONTACTEZ-NOUS</h5>
+    <p>Une remarque? Une suggestion ? N'hesitez pas à nous écrire.</p>
+  </article>
+  <article class="categories">
+    <div class="images">
+    <a href="https://facebook.com/MangaDigitalCollection"><%= image_tag "Logos/facebook.svg", class:"mail_logo", width: "10%", height: "10%" %></a>
+    <a href="https://twitter.com/MangaDigitalCollection"><%= image_tag "Logos/twitter.svg", class:"mail_logo", width: "10%", height: "10%" %></a>
+    <a href="https://reddit.com/MangaDigitalCollection"><%= image_tag "Logos/reddit.svg", class:"mail_logo", width: "10%", height: "10%" %></a>
+    <% mail_to "me@domain.com" do %>
+      <%= image_tag "Logos/gmail.svg", class:"mail_logo", width: "10%", height: "10%" %>
+    <% end %>
+    </div>
+  </article>
+</main>

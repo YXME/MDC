@@ -1,0 +1,123 @@
+<%= stylesheet_link_tag "addmodifyback" %>
+<%= javascript_tag "ajoutmodify" %>
+    <%= image_tag "Logos/MDC2.png", width: "50%" %>
+    <h1>Ajouter une référence</h1>
+    <%= link_to "Revenir à l'accueil", "/" %>
+<%= form_tag "/ajouter", method: "post" do %>
+<div class="form">
+  <div class="">
+  <label>Titre</label>
+  <input type="text" name="titre" style="width:100%;"/>
+  </div>
+
+  <div class="">
+    <label>Titre court</label>
+    <input type="text" name="sousTitre" style="width:100%;"/>
+  </div>
+
+  <div class="">
+    <label>Titre Original</label>
+    <input type="text" name="orgTitle" style="width:100%;" />
+  </div>
+
+  <div class="">
+    <label>Synopsis</label>
+    <textarea name="synopsis" style="width:100%;height:90px;" name="name" rows="8" cols="80"></textarea>
+  </div>
+
+  <div class="">
+    <label>Cette licence possède t'elle un manga ?</label>
+    <input onchange="doChange('isManga')" type="checkbox" id="isManga" name="isManga"/>
+  </div>
+
+  <div class="">
+    <label>Statut de parution</label>
+    <select class="depManga" name="parStatus" style="width:100%;">
+      <option>Terminée</option>
+      <option>En cours de parution</option>
+      <option>A venir</option>
+    </select>
+  </div>
+
+  <div class="">
+    <label>Nombre de tomes (Japon)</label>
+    <input class="depManga" type="text" name="nbVolJp" style="width:100%;"/>
+  </div>
+
+ <div class="">
+   <label>Ce manga est-il/a t'il été édité en France ?</label>
+   <input id="isFr" class="depManga" type="checkbox" name="isFr" />
+ </div>
+
+ <div class="">
+   <label>Nombre de tomes (France)</label>
+   <input type="text" class="depFr" name="nbVolFr"/>
+ </div>
+
+ <div class="">
+   <label>Edition (France)</label>
+   <select id="depFr" name="editeur" style="width:100%;">
+     <% @allEditeurs.each do | iteEditeur | %>
+       <option value = "<%= iteEditeur.id %>"><%= iteEditeur.nom %></option>
+     <% end %>
+   </select>
+   <%= link_to "Ajouter un éditeur", "editeurs#new", target: :_blank %>
+ </div>
+
+<div class="">
+  <label>Cette licence as-t'elle été adaptée en animé ?</label>
+  <input type="checkbox" name="isAnime"/>
+</div>
+<div class="">
+  <label>Statut de diffusion</label>
+  <select name="difStatus" style="width:100%;">
+    <option>Terminée</option>
+    <option>En cours de diffusion</option>
+    <option>A venir</option>
+  </select>
+</div>
+
+<div class="">
+  <label>Nombre total d'épisodes (Toutes saisons comprises)</label>
+  <input type="text" name="nbeptotal" style="width:100%;"/>
+</div>
+
+<div class="">
+  <label>Nombre total d'OAV (Toutes saisons comprises)</label>
+  <input type="text" name="nboavtotal" style="width:100%;"/>
+</div>
+
+<div class="">
+  <label>Nombre total de films</label>
+  <input type="text" name="nbfilmstotal" style="width:100%;"/>
+</div>
+
+<div class="">
+  <label>Studio d'animation</label>
+  <select name="studio" style="width:100%;">
+    <%= @allStudios.each do | iteStudio | %>
+      <option value = "<%= iteStudio.id %>"><%= iteStudio.nom %></option>
+    <% end %>
+  </select>
+  <%= link_to "Ajouter un studio", "studio#new", target: :_blank %>
+</div>
+
+<div class="">
+  <label>L'animé a t'il été licencié en France ?</label>
+  <input type="checkbox" name="isLicenced" />
+</div>
+
+<div class="">
+  <label>Licencié par</label>
+  <select name="licencer" style="width:100%;" >
+    <%= @allLicencer.each do | iteLicencer | %>
+      <option value = "<%= iteLicencer.id %>"><%= iteLicencer.nom %></option>
+    <% end %>
+  </select>
+  <%= link_to "Ajouter un propriétaire de licence", "licencer#new", target: :_blank %>
+
+</div>
+
+  <input type="submit" value="Ajouter" style="width:100%;"/>
+</div>
+<% end %>

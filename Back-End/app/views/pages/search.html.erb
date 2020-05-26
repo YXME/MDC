@@ -1,2 +1,41 @@
-<h1>Pages#accueil</h1>
-<p>Find me in app/views/pages/accueil.html.erb</p>
+<%= stylesheet_link_tag "search" %>
+<nav>
+  <div>
+    <%= image_tag "Logos/MDCnavbar.png", class:"logo", width: "10%", height: "10%" %>
+  </div>
+  <div class="liens">
+    <a href="/"><%= image_tag "Logos/home.png", class:"logo", width: "10%", height: "10%" %></a>
+    <a href="/search"><%= image_tag "Logos/search.png", class:"logo", width: "10%", height: "10%" %></a>
+    <a href="/login"><%= image_tag "Logos/user.png", class:"logo", width: "10%", height: "10%" %></a>
+    <a href="/random"><%= image_tag "Logos/dice.png", class:"logo", width: "10%", height: "10%" %></a>
+    <a href="#"><%= image_tag "Logos/contact.png", class:"logo", width: "10%", height: "10%" %></a>
+  </div>
+</nav>
+
+<main>
+    <div class="categories">
+      <%= form_tag "/search", method: "post" do %>
+        <div class="search-input">
+            <input type="text" placeholder="Saisisez votre recherche" name="search"/>
+            <button type="submit" name="button"><%= image_tag "Logos/loupeb.png", width: "10%", height:"10%" %></button>
+        </div>
+      <% end %>
+    </div>
+      <% if @Result then %>
+      <article class="categories">
+          <h5>Résultats</h5>
+          <div class="images">
+            <% @Result.each do |selResult| %>
+              <div>
+                  <img class="miniature" src="img/References/Jojo's Bizarre Adventure/Cover.jpg" alt=""/>
+                  <p><%= selResult.titre %></p>
+              </div>
+            <% end %>
+          </div>
+      </article>
+      <% end %>
+
+    <article class="pub">
+      <%= image_tag "pub.jpg", width: "100%" %>
+</article>
+</main>

@@ -1,2 +1,65 @@
-<h1>Users#profile</h1>
-<p>Find me in app/views/users/profile.html.erb</p>
+<nav>
+  <div>
+    <%= image_tag "Logos/MDCnavbar.png", class:"logo", width: "10%", height: "10%" %>
+  </div>
+  <div class="liens">
+    <a href="/"><%= image_tag "Logos/home.png", class:"logo", width: "10%", height: "10%" %></a>
+    <a href="/search"><%= image_tag "Logos/search.png", class:"logo", width: "10%", height: "10%" %></a>
+    <a href="/login"><%= image_tag "Logos/user.png", class:"logo", width: "10%", height: "10%" %></a>
+    <a href="/random"><%= image_tag "Logos/dice.png", class:"logo", width: "10%", height: "10%" %></a>
+    <a href="/contacter"><%= image_tag "Logos/contact.png", class:"logo", width: "10%", height: "10%" %></a>
+  </div>
+</nav>
+<main>
+  <article class="categories">
+    <div class="title">
+      <h6><%= @currentUser.username %></h6>
+      <%= link_to "Déconnexion", "#{@currentUser.username}/destroy" %>
+    </div>
+    <div class="user">
+      <img src="img/chepaki.jpg" alt="">
+      <div class="hb">
+        <div class="ph">
+          <p>Nb de commentaires: <span><%= @currentUser.NbCom %></span></p>
+          <p>Nb de listes: <span><%= @allListes.count %></span></p>
+          <p>Manga favori: <span>valeur</span></p>
+        </div>
+        <% if @ownProfile then %>
+          <div class="pb">
+            <p>Visible uniquement par vous</p>
+            <p>Adresse mail: <span><%= @currentUser.email %></span></p>
+            <p>Mot de passe:<a href="#">Modifier</a></p>
+            <a href="#">Supprimer le compte</a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </article>
+  <article class="categories bio">
+    <div class="title">
+      <h6>Biographie</h6>
+      <a href="#">Modifier</a>
+    </div>
+    <p><%= @currentUser.bio %></p>
+  </article>
+
+  <% if @allListes.count > 0 then %>
+    <article class="categories">
+      <div class="title">
+        <h6>Listes</h6>
+        <a href="#">Gérer les listes</a>
+      </div>
+      <div class="images">
+        <% @allListes.each do |selLis| %>
+          <div>
+            <%= image_tag "Logos/contact.png", class:"miniature", width: "10%", height: "10%" %>
+            <p><%= link_to selLis.titre, selLis.url %></p>
+          </div>
+        <% end %>
+      </div>
+  </article>
+  <% end %>
+  <article class="pub">
+    <%= image_tag "pub.jpg", width: "100%" %>
+  </article>
+</main>

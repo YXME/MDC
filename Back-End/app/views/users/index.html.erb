@@ -1,0 +1,22 @@
+<%= stylesheet_link_tag "lists_back" %>
+<%= image_tag "Logos/MDC2.png", width: "50%" %>
+<header>
+  <ul>
+    <li><%= link_to "Références", "/references/index" %></li>
+    <li><%= link_to "Studios", "/studios/index" %></li>
+    <li><%= link_to "Editeurs", "/editeurs/index" %></li>
+    <li><%= link_to "Licences", "/licences/index" %></li>
+    <li><%= link_to "Propriétaire de licences", "/licencers/index" %></li>
+    <li><%= link_to "Utilisateurs", "index" %></li>
+    <li><%= link_to "Commentaires", "/comments/index" %></li>
+  </ul>
+</header>
+<h1>Utilisateurs</h1>
+<% @allUsers.each do |selUser| %>
+  <p><%= selUser.username %> - Role : <%= selUser.role %></p>
+  <% if selUser.role != "admin" then %>
+    <%= form_tag "/licencers/#{selUser.id}", method: "delete" do %>
+    <input type="submit" value="Supprimer" />
+  <% end %>
+  <% end %>
+<% end %>

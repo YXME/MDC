@@ -1,0 +1,33 @@
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.form {
+  flex-grow: 4;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-between;
+}
+
+.mail_logo {
+  width: 100%;
+  height: 100%;
+}
+
+.categories {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+main {
+  display: flex;
+  font-family: Verdana, sans-serif;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

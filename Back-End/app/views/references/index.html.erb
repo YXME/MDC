@@ -1,4 +1,18 @@
-<h1>References</h1>
-<% @allRef.each do |selRef| %>
-  <p><%= selRef.titre %></p>
-<% end %>
+<%= stylesheet_link_tag "lists_back" %>
+<%= image_tag "Logos/MDC2.png", width: "50%" %>
+<header>
+  <ul>
+    <li><%= link_to "Références", "index" %></li>
+    <li><%= link_to "Studios", "/studios/index" %></li>
+    <li><%= link_to "Editeurs", "/editeurs/index" %></li>
+    <li><%= link_to "Licences", "/licences/index" %></li>
+    <li><%= link_to "Propriétaire de licences", "/licencers/index" %></li>
+    <li><%= link_to "Utilisateurs", "/users/index" %></li>
+    <li><%= link_to "Commentaires", "/comments/index" %></li>
+  </ul>
+</header>
+  <h1>Références</h1>
+  <% @allRef.each do |selRef| %>
+    <a href="/<%= selRef.url %>/modify"><p><%= selRef.titre %></p></a>
+  <% end %>
+<%= link_to "Ajouter une référence", "/ajouter" %>

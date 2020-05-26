@@ -1,10 +1,21 @@
-<h1>Connexion</h1>
-<a href="/">Retourner à l'accueil</a>
-<a href="/register">S'enregistrer</a>
-<%= form_tag "/login", method: :post do %>
-  <input type="text" name="username" />
-  <input type="password" name="password" />
-  <input type="submit" value="Se connecter" />
-<% end %>
-<div><%= flash[:info] %></div>
-<%= yield %>
+<%= stylesheet_link_tag "back" %>
+    <%= image_tag "Logos/MDC2.png", width: "50%" %>
+  <h1>Connexion</h1>
+  <a href="/">Retourner à l'accueil</a>
+  <a href="/register">S'enregistrer</a>
+  <%= form_tag "/login", method: :post do %>
+  <div class="">
+    <div class="">
+      <label>Nom d'utilisateur</label>
+      <input type="text" name="username" style="width:100%;"/>
+    </div>
+    <div class="">
+      <label>Mot de passe</label>
+      <input type="password" name="password" style="width:100%;"/>
+    </div>
+    <input type="submit" value="Se connecter" style="width:102.5%;"/>
+  </div>
+
+  <% end %>
+  <div><%= flash[:info] %></div>
+  <%= yield %>

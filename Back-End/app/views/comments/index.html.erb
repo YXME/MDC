@@ -1,2 +1,21 @@
-<h1>Comments#index</h1>
-<p>Find me in app/views/comments/index.html.erb</p>
+<%= stylesheet_link_tag "lists_back" %>
+<%= image_tag "Logos/MDC2.png", width: "50%" %>
+<header>
+  <ul>
+    <li><%= link_to "Références", "/references/index" %></li>
+    <li><%= link_to "Studios", "/studios/index" %></li>
+    <li><%= link_to "Editeurs", "/editeurs/index" %></li>
+    <li><%= link_to "Licences", "/licences/index" %></li>
+    <li><%= link_to "Propriétaire de licences", "/licencers/index" %></li>
+    <li><%= link_to "Utilisateurs", "/users/index" %></li>
+    <li><%= link_to "Commentaires", "index" %></li>
+  </ul>
+</header>
+  <h1>Commentaires</h1>
+  <% @allComments.each do |selCom| %>
+    <p><%= @allUsers.find(selCom.utilisateur_id).username %> - <%= @allRef.find(selCom.reference_id).titre %> - <%= selCom.note %></p>
+    <textarea name="name" rows="8" cols="80" readonly><%= selCom.text %></textarea>
+    <%= form_tag "/comments/#{selUser.id}", method: "delete" do %>
+    <input type="submit" value="Supprimer" />
+    <% end %>
+  <% end %>

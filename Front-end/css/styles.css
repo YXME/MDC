@@ -31,7 +31,7 @@ p{
 
 
 .pub {
-	width: 30vw; 
+	width: 30vw;
 	height: 12.5vh;
 	display: flex;
 	align-items: center;
@@ -75,28 +75,27 @@ main > article {
     border: 1px solid black;
     box-shadow: 0px 5px 5px black;
     width: 70vw;
-} 
+}
 
 .categories {
     display: flex;
     flex-direction: column;
     margin: 3vh 0;
-	
+
 }
 
 .categories .images {
     display: flex;
     justify-content: space-evenly;
 	align-items: flex-start;
-}    
+}
 
 .categories h6 {
-	font-family: Verdana, sans-serif;
-	color: #1b24d1;
+  	font-family: Verdana, sans-serif;
+  	color: #1b24d1;
     font-size: 18px;
     border-bottom: 1px solid black;
     padding: 5px;
     margin: 0;
     margin-bottom: 5px;
 }
-

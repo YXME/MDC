@@ -1,11 +1,24 @@
+<%= stylesheet_link_tag "back" %>
+<%= image_tag "Logos/MDC2.png", width: "50%" %>
 <h1>S'enregistrer</h1>
 <a href="/">Retourner à l'accueil</a>
 <a href="/login">Se connecter</a>
 <%= form_tag "/register", method: :post do %>
-  <input type="text" name="email" />
-  <input type="text" name="username" />
-  <input type="password" name="password" />
-  <input type="submit" value="S'enregistrer" />
+<div class="">
+  <div class="">
+    <label>Email</label>
+    <input type="text" name="email" style="width:100%;"/>
+  </div>
+  <div class="">
+    <label>Nom d'utilisateur</label>
+    <input type="text" name="username" style="width:100%;"/>
+  </div>
+  <div class="">
+    <label>Mot de passe</label>
+    <input type="password" name="password" style="width:100%;"/>
+  </div>
+  <input type="submit" value="S'enregistrer" style="width:102.5%;"/>
+</div>
 <% end %>
 <div><%= flash[:info] %></div>
 <%= yield %>

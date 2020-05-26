@@ -1,0 +1,37 @@
+form {
+  margin-top: 3vh;
+}
+.search-input {
+    height: 5vh;
+    width: 50vw;
+    border: 1px solid grey;
+    box-shadow: 0px 5px 5px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-input input {
+    width: 85%;
+    height: 55%;
+}
+
+.search-input button {
+    height: 70%;
+    width: 5vh;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+
+.search-input img{
+  height: 3vh;
+  width: 3vw;
+}
+.categories .images{
+  flex-wrap: wrap;
+}
+
+.categories .images div{
+    width:8vw;
+}

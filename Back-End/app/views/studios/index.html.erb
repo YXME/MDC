@@ -1,0 +1,23 @@
+<%= stylesheet_link_tag "lists_back" %>
+<%= image_tag "Logos/MDC2.png", width: "50%" %>
+<header>
+  <ul>
+    <li><%= link_to "Références", "/references/index" %></li>
+    <li><%= link_to "Studios", "index" %></li>
+    <li><%= link_to "Editeurs", "/editeurs/index" %></li>
+    <li><%= link_to "Licences", "/licences/index" %></li>
+    <li><%= link_to "Propriétaire de licences", "/licencers/index" %></li>
+    <li><%= link_to "Utilisateurs", "/users/index" %></li>
+    <li><%= link_to "Commentaires", "/comments/index" %></li>
+  </ul>
+</header>
+<h1>Studios</h1>
+<% @allStudios.each do |selStudio| %>
+  <div>
+    <p><%= selStudio.nom %></p>
+    <%= form_tag "/studios/#{selStudio.id}", method: "delete" do %>
+    <input type="submit" value="Supprimer" />
+  </div>
+  <% end %>
+<% end %>
+<%= link_to "Ajouter un studio", "/studios/new" %>

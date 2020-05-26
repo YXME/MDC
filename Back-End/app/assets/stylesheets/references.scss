@@ -1,3 +1,102 @@
-// Place all the styles related to the references controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.categories .title{
+   display: flex;
+   justify-content: space-between;
+   border-bottom: 1px solid black;
+   padding-right: 1%;
+   align-items: baseline;
+}
+
+.categories h6{
+   border:none;
+}
+
+.user {
+   display: flex;
+   align-items: left;
+   padding: .5vh .5vw;
+}
+
+.user img{
+   height: 20vh;
+   width: 10vw;
+   margin-right: 1vw;
+}
+
+.user p span {
+   color: black;
+}
+
+.user p, a {
+   font-size: .7vw;
+}
+
+p {
+   text-align: left;
+   margin: 0;
+}
+
+.user .ph {
+   margin-bottom: 3vh;
+}
+
+.user .pb > a {
+   color: red;
+   text-decoration: none;
+}
+
+.user .pb p a {
+   color: black;
+}
+
+.bio {
+   min-height: 10vh;
+}
+
+
+/* COMMENTAIRES */
+.commentaires {
+    padding: .5vh .5vw;
+}
+
+.commentaires .commentaire .sender {
+    display: flex;
+}
+
+.commentaires .commentaire .sender img {
+    height: 7vh;
+    width: 7vh;
+}
+
+.commentaires .commentaire .sender .pseudo-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.commentaires .commentaire {
+    padding: .5vh 0;
+}
+
+.commentaires .commentaire .sender .pseudo-wrapper .nb-commentaires {
+    font-size: .7vw;
+    color: grey;
+    margin-left: .5vw;
+}
+
+.commentaires .commentaire .sender .right-part .stars img {
+    height: 4vh;
+    width: 4vh;
+}
+
+.commentaires .commentaire p {
+    color: black;
+    font-size: 1vw;
+}
+
+h6 {
+  font-family: Verdana, sans-serif;
+   color: #1b24d1;
+   font-size: 18px;
+   padding: 5px;
+   margin: 0;
+   margin-bottom: 5px;
+}
