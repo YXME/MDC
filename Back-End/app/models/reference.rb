@@ -1,3 +1,3 @@
 class Reference < ActiveRecord::Base
-  mount_uploader :imageUrl, CoverUploader
+  include ImageUploader::Attachment.new(:cover)
 end

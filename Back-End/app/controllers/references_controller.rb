@@ -26,24 +26,23 @@ class ReferencesController < ApplicationController
   end
 
   def create
-      @Ref = Reference.create(
-      titre: params[:titre],
-      sousTitre: params[:sousTitre],
-      orgTitre: params[:orgTitle],
-      synopsis: params[:synopsis],
-      url: "/",
-      imageUrl: "/",
-      parStatus: params[:parStatus],
-      nbVolJp: params[:nbVolJp],
-      nbVolFr: params[:nbVolFr],
-      edition_id: params[:editeur],
-      difStatus: params[:difStatus],
-      nbEpTotal: params[:nbeptotal],
-      nbOAVTotal: params[:nbOAVTotal],
-      nbFilmsTotal: params[:nbfilmstotal],
-      studio_id: params[:studio],
-      licencer_id: params[:licencer]
-      )
+      @Ref = Reference.create(patch_params)
+      @Ref.titre = params[:titre]
+      @Ref.sousTitre = params[:sousTitre]
+      @Ref.orgTitre = params[:orgTitle]
+      @Ref.synopsis = params[:synopsis]
+      @Ref.parStatus = params[:parStatus]
+      @Ref.nbVolJp = params[:nbVolJp]
+      @Ref.nbVolFr = params[:nbVolFr]
+      @Ref.edition_id = params[:editeur]
+      @Ref.difStatus = params[:difStatus]
+      @Ref.nbEpTotal = params[:nbeptotal]
+      @Ref.nbOAVTotal = params[:nbOAVTotal]
+      @Ref.nbFilmsTotal = params[:nbfilmstotal]
+      @Ref.studio_id = params[:studio]
+      @Ref.licencer_id = params[:licencer]
+      @Ref.licence_id = params[:licence]
+
 
       if params[:isManga] then
         @Ref.isManga = true
@@ -73,7 +72,7 @@ class ReferencesController < ApplicationController
 
   def modify
       @selRef = Reference.find_by(url: params[:url])
-      if @selRef.licence_id
+      if @selRef.licence_id and @selRef.licence_id != 0
         @selLicence = Licence.find(@selRef.licence_id)
       end
       @allEditeurs = Editeur.all
@@ -111,7 +110,6 @@ class ReferencesController < ApplicationController
     @Ref.studio_id = params[:studio]
     @Ref.licencer_id = params[:licencer]
     @Ref.licence_id = params[:licence]
-    @Ref.imageUrl = "/"
 
     if params[:isManga] then
       @Ref.isManga = true
@@ -119,14 +117,9 @@ class ReferencesController < ApplicationController
       @Ref.isManga = false
     end
 
-
-    uploader = CoverUploader.new
-    uploader.store!(params[:imageUrl])
-
-    if params[:imageUrl]
-
-    else
-      @Ref.imageUrl = "/"
+    if params[:cover_data]
+      @temp_var = params[:cover_data].to_s
+      @Ref.cover_data = @temp_var.tr("\"", "\\\"")
     end
 
     if params[:isLicenced] then
@@ -159,7 +152,7 @@ class ReferencesController < ApplicationController
       @Ref.url = params[:titre].tr(" ", "_")
     end
 
-    @Ref.save
+    @Ref.save()
     redirect_to("/")
   end
 
@@ -210,4 +203,9 @@ class ReferencesController < ApplicationController
       redirect_to("/")
     end
   end
+
+  private
+    def patch_params
+      params.permit(:titre, :sousTitre, :orgTitre, :url, :synopsis, :licence_id, :note, :isManga, :isFr, :parStatus, :nbVolFr, :nbVolJp, :nbEpTotal, :nbOAVTotal, :nbFIlmsTotal, :studio_id, :licencer_id, :isSponso, :isValidated, :cover)
+    end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_26_150422) do
+ActiveRecord::Schema.define(version: 2020_05_26_203501) do
 
   create_table "affiliates", force: :cascade do |t|
     t.integer "reference_id", null: false
@@ -46,22 +46,21 @@ ActiveRecord::Schema.define(version: 2020_05_26_150422) do
   end
 
   create_table "references", force: :cascade do |t|
-    t.string "titre", limit: 200, null: false
+    t.string "titre", limit: 200
     t.string "sousTitre", limit: 50
-    t.string "orgTitre", null: false
-    t.string "url", null: false
-    t.string "imageUrl"
-    t.text "synopsis", limit: 3000, null: false
+    t.string "orgTitre"
+    t.string "url"
+    t.text "synopsis", limit: 3000
     t.integer "licence_id"
     t.decimal "note", precision: 1
-    t.boolean "isManga", default: false, null: false
-    t.boolean "isFr", default: false, null: false
+    t.boolean "isManga", default: false
+    t.boolean "isFr", default: false
     t.string "parStatus"
     t.integer "nbVolFr"
     t.integer "nbVolJp"
     t.integer "edition_id"
-    t.boolean "isAnime", default: false, null: false
-    t.boolean "isLicenced", default: false, null: false
+    t.boolean "isAnime", default: false
+    t.boolean "isLicenced", default: false
     t.string "difStatus"
     t.integer "nbEpTotal"
     t.integer "nbOAVTotal"
@@ -70,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_05_26_150422) do
     t.integer "licencer_id"
     t.boolean "isSponso", default: false, null: false
     t.boolean "isValidated", default: false, null: false
+    t.text "cover_data"
   end
 
   create_table "studios", force: :cascade do |t|
@@ -80,10 +80,10 @@ ActiveRecord::Schema.define(version: 2020_05_26_150422) do
     t.string "email", null: false
     t.string "username", null: false
     t.string "password", null: false
-    t.string "pdpUrl"
     t.integer "NbCom", null: false
     t.string "role", default: "user", null: false
     t.string "bio", default: "Moi aussi, j'ai mon profil sur MDC !"
+    t.text "profile_data"
   end
 
 end
