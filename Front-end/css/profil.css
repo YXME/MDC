@@ -10,7 +10,43 @@
   border:none;
 }
 
+.user {
+  display: flex;
+  padding: .5vh .5vw;
+}
+
 .user img{
   height: 20vh;
   width: 10vw;
+  margin-right: 1vw;
+}
+
+.user p span {
+  color: black;
+}
+
+.user p, a {
+  font-size: .7vw;
+}
+
+p {
+  text-align: left;
+  margin: 0;
+}
+
+.user .ph {
+  margin-bottom: 3vh;
+}
+
+.user .pb > a {
+  color: red;
+  text-decoration: none;
+}
+
+.user .pb p a {
+  color: black;
+}
+
+.bio {
+  min-height: 10vh;
 }
