@@ -87,8 +87,14 @@ main > article {
 
 .categories .images {
     display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
 	align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.categories .images div{
+    width:8vw;
 }
 
 .categories h5 {

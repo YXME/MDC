@@ -1,43 +1,49 @@
 <nav>
-  <div>
-    <%= image_tag "Logos/MDCnavbar.png", class:"logo", width: "10%", height: "10%" %>
-  </div>
-  <div class="liens">
-    <a href="accueil"><%= image_tag "Logos/home.png", class:"logo", width: "10%", height: "10%" %></a>
-    <a href="search"><%= image_tag "Logos/search.png", class:"logo", width: "10%", height: "10%" %></a>
-    <a href="login"><%= image_tag "Logos/user.png", class:"logo", width: "10%", height: "10%" %></a>
-    <a href="random"><%= image_tag "Logos/dice.png", class:"logo", width: "10%", height: "10%" %></a>
-    <a href="contacter"><%= image_tag "Logos/contact.png", class:"logo", width: "10%", height: "10%" %></a>
-  </div>
+    <div>
+        <%= image_tag "Logos/MDCnavbar.png", class:"logo", width: "10%", height: "10%" %>
+    </div>
+    <div class="liens">
+        <a href="accueil"><%= image_tag "Logos/home.png", class:"logo", width: "10%", height: "10%" %></a>
+        <a href="search"><%= image_tag "Logos/search.png", class:"logo", width: "10%", height: "10%" %></a>
+        <a href="login"><%= image_tag "Logos/user.png", class:"logo", width: "10%", height: "10%" %></a>
+        <a href="random"><%= image_tag "Logos/dice.png", class:"logo", width: "10%", height: "10%" %></a>
+        <a href="contacter"><%= image_tag "Logos/contact.png", class:"logo", width: "10%", height: "10%" %></a>
+    </div>
 </nav>
 
 <main>
-  <article class="categories">
-    <center><h4>MangaDigitalCollection est un site francophone de référencement de mangas et d'animés.</h4></center>
-  </article>
-  <article class="categories">
-    <div>
-      <h5>Nouveautés</h5>
-    </div>
-    <div class="images">
-      <div>
-        <% @NewRef.each do |selRef| %>
-          <%= image_tag "#{selRef.cover_data}", class:"miniature" %>
-          <p><%= link_to selRef.titre, selRef.url %></p>
-        <% end %>
-      </div>
-    </div>
-  </article>
-  <article class="categories">
-    <h5>Sponsorisé</h5>
-    <div class="images">
-      <% @SponsoRef.each do |selRef| %>
-        <%= image_tag "#{selRef.cover_data}", class:"miniature" %>
-        <p><%= link_to selRef.titre, selRef.url %></p>
-      <% end %>
-    </div>
-  </article>
-  <article class="pub">
-    <%= image_tag "pub.jpg", width: "101%" %>
-  </article>
+    <article class="categories">
+        <center><h4>MangaDigitalCollection est un site francophone de référencement de mangas et d'animés.</h4></center>
+    </article>
+    <article class="categories">
+        <div>
+            <h5>Nouveautés</h5>
+        </div>
+        <div class="images">
+            <% @NewRef.each do |selRef| %>
+                <div>
+                    <%= link_to selRef.url do %>
+                        <%= image_tag "#{selRef.cover_data}", class:"miniature" %>
+                        <p><%= selRef.titre %></p>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </article>
+    <article class="categories">
+        <h5>Sponsorisé</h5>
+        <div class="images">
+            <% @SponsoRef.each do |selRef| %>
+                <div>
+                    <%= link_to selRef.url do %>
+                        <%= image_tag "#{selRef.cover_data}", class:"miniature" %>
+                        <p><%= selRef.titre %></p>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </article>
+    <article class="pub">
+        <%= image_tag "pub.jpg", width: "101%" %>
+    </article>
 </main>

@@ -23,9 +23,9 @@
     <div class="hb">
       <div class="ph">
         <p>Titre original : <span><%= @selRef.orgTitre %></span></p>
-        <% if @selRef.isManga then %>
+        <% if @selRef.isManga == true then %>
             <p>Statut de parution: <span><%= @selRef.parStatus %></span></p>
-            <% if @selRef.isFr then %>
+            <% if @selRef.isFr == true then %>
                 <p>Nombre de volumes: <span><%= @selRef.nbVolFr %></span></p>
                 <p>Edition: <span><%= @selEditeur.nom %></p>
             <% else %>
@@ -34,7 +34,7 @@
         <% end %>
       </div>
       <div class="pb">
-        <% if @selRef.isAnime then %>
+        <% if @selRef.isAnime == true then %>
             <p>Statut de diffusion: <span><%= @selRef.difStatus %></span></p>
             <p>Studio: <span><%= @selStudio.nom %></p>
             <p>Nombre total d'épisodes: <span><%= @selRef.nbEpTotal %></span></p>
@@ -125,10 +125,12 @@
         </div>
         <div class="images">
             <% @linkRef.each do |linkRef| %>
-              <%= image_tag "", width: "10%", height: "10%" %>
-              <a href="/<%= linkRef.url %>"><p><%= linkRef.titre %></p></a>
+            <div>
+                <%= image_tag "#{linkRef.cover_data}", class:"miniature" %>
+                <a href="/<%= linkRef.url %>"><p><%= linkRef.titre %></p></a>
+            </div>
             <% end %>
-    </article>
+        </article>
     <% end %>
     <article class="pub">
       <%= image_tag "pub.jpg", width: "100%" %>

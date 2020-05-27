@@ -19,6 +19,7 @@ class ReferencesController < ApplicationController
   end
 
   def ajouter
+    @Ref = Reference.create(patch_params)
     @allEditeurs = Editeur.all
     @allStudios = Studio.all
     @allLicencer = Licencer.all
@@ -26,7 +27,7 @@ class ReferencesController < ApplicationController
   end
 
   def create
-      @Ref = Reference.create(patch_params)
+      @Ref = Reference.find(params[:id])
       @Ref.titre = params[:titre]
       @Ref.sousTitre = params[:sousTitre]
       @Ref.orgTitre = params[:orgTitle]
@@ -156,7 +157,7 @@ class ReferencesController < ApplicationController
         @Ref.licence_id = params[:reference][:licence]
     end
 
-    if params[:reference][:isManga] then
+    if params[:reference][:isManga] == "1"  then
       @Ref.isManga = true
     else
       @Ref.isManga = false
@@ -171,25 +172,25 @@ class ReferencesController < ApplicationController
     end
 
 
-    if params[:reference][:isLicenced] then
+    if params[:reference][:isLicenced] == "1"  then
       @Ref.isLicenced = true
     else
       @Ref.isLicenced = false
     end
 
-    if params[:reference][:isFr] then
+    if params[:reference][:isFr] == "1"  then
       @Ref.isFr = true
     else
       @Ref.isFr = false
     end
 
-    if params[:reference][:isValidated] then
+    if params[:reference][:isValidated] == "1" then
       @Ref.isValidated = true
     else
       @Ref.isValidated = false
     end
 
-    if params[:reference][:isAnime] then
+    if params[:reference][:isAnime] == "1"  then
       @Ref.isAnime = true
     else
       @Ref.isAnime = false
@@ -240,7 +241,7 @@ class ReferencesController < ApplicationController
 
       @linkRef = Array.new
 
-      if @selRef.licence_id then
+      if @selRef.licence_id and @selRef.licence_id != 0 then
         @selLicence = Licence.find(@selRef.licence_id)
         @allRef.each do |iteRef|
           if iteRef.licence_id == @selLicence.id and iteRef.id != @selRef.id then

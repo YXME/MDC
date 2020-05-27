@@ -15,7 +15,7 @@ class EditeursController < ApplicationController
 
   def add_editeur
     Editeur.create nom: params[:nom]
-    redirect_to "/editeurs/index"
+    redirect_back fallback_location: "/"
   end
 
   def destroy_editeur

@@ -32,8 +32,11 @@
             </div>
             <% else @Result.each do |selResult| %>
               <div>
-                  <img class="miniature" src="img/References/Jojo's Bizarre Adventure/Cover.jpg" alt=""/>
-                  <p><%= selResult.titre %></p>
+                  <%= link_to selResult.url do %>
+                      <%= image_tag "#{selResult.cover_data}", class:"miniature" %>
+                      <p><%= selResult.titre %></p>
+                  <% end %>
+
               </div>
             <% end %>
             <% end %>
