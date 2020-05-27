@@ -2,169 +2,117 @@
 <%= image_tag "Logos/MDC2.png", width: "50%" %>
 <h1>Modifier une référence</h1>
 
-<%= form_tag "/#{@selRef.url}/apply", method: "patch" do %>
+<%= form_with(model: @selRef, url: "apply", method: "patch", local: true) do |f| %>
 <div class="form">
-  <div class="">
-    <label>Titre</label>
-    <input type="text" name="titre" value="<%= @selRef.titre %>" style="width:100%;" />
-  </div>
+    <div class="form_field">
+        <%= label_tag "Titre" %>
+        <%= f.text_field :titre, class: "input" %>
+    </div>
 
-  <div class="">
-    <label>Titre court</label>
-    <input type="text" name="sousTitre" value="<%= @selRef.sousTitre %>" style="width:100%;"/>
-  </div>
+    <div class="">
+        <%= label_tag "Titre court" %>
+        <%= f.text_field :sousTitre, class: "input" %>
+    </div>
 
-  <div class="">
-    <label>Titre Original</label>
-    <input type="text" name="orgTitle" value="<%= @selRef.orgTitre %>" style="width:100%;"/>
-  </div>
+    <div class="">
+        <%= label_tag "Titre original" %>
+        <%= f.text_field :orgTitre, class: "input" %>
+    </div>
 
-  <div class="">
-    <label>Synopsis</label>
-    <textarea name="synopsis" style="width:100%;height:90px;"rows="8" cols="80"><%= @selRef.synopsis %></textarea>
-  </div>
+    <div class="">
+      <%= label_tag "Synopsis" %>
+      <%= f.text_area(:synopsis, size: "80x8", class: "input") %>
+    </div>
 
-  <div class="">
-    <label>Ajouter une image</label>
-    <%= file_field(:cover_data, :cover) %>
-  </div>
+    <div class="">
+        <%= label_tag "Image d'illustration" %>
+        <%= f.file_field :cover_data %>
+    </div>
 
-  <div class="">
-    <label>Cette licence possède t'elle un manga ?</label>
-    <input type="checkbox" id="isManga" name="isManga" <% if @selRef.isManga then %> checked <% end %>  />
-  </div>
+    <div class="">
+        <%= label_tag "Cette licence possède t'elle un manga ?" %>
+        <%= f.check_box(:isManga) %>
+    </div>
 
-  <div class="">
-    <label>Statut de parution</label>
-    <select name="parStatus" style="width:100%;" <% if !@selRef.isManga then %> disabled <% end %>>
-      <option <% if @selRef.parStatus == "Terminée" then %> selected <% end %>>Terminée</option>
-      <option <% if @selRef.parStatus == "En cours de parution" then %> selected <% end %>>En cours de parution</option>
-      <option <% if @selRef.parStatus == "A venir" then %> selected <% end %>>A venir</option>
-    </select>
-  </div>
+    <div class="">
+        <%= label_tag "Statut de parution" %>
+        <%= f.select :parStatus, options_for_select([['Terminée', 'Terminée'], ["En cours de parution","En cours de parution"], ["A venir","A venir"]], @selRef.parStatus) %>
+    </div>
 
-  <div class="">
-    <label>Nombre de tomes (Japon)</label>
-    <input type="text" style="width:100%;" name="nbVolJp" value="<%= @selRef.nbVolJp %>" <% if @selRef.isFr then %> disabled <% end %>/>
-  </div>
+    <div class="">
+        <%= label_tag "Nombre de tomes (Japon)" %>
+        <%= f.text_field :nbVolJp, class: "input" %>
+    </div>
 
-  <div class="">
-    <label>Ce manga est-il/a t'il été édité en France ?</label>
-    <input type="checkbox" name="isFr" <% if @selRef.isFr then %> checked <% end %> <% if !@selRef.isManga then %> disabled <% end %> />
-  </div>
+    <div class="">
+        <%= label_tag "Ce manga est-il/a t'il été édité en France ?" %>
+        <%= f.check_box(:isFr) %>
+    </div>
 
-  <div class="">
-    <label>Nombre de tomes (France)</label>
-    <input type="text" style="width:100%;" name="nbVolFr" value="<%= @selRef.nbVolFr %>" <% if !@selRef.isFr then %> disabled <% end %>/>
-  </div>
+    <div class="">
+        <%= label_tag "Nombre de tomes (France)" %>
+        <%= f.text_field :nbVolFr, class: "input" %>
+    </div>
 
-  <div class="">
-    <label>Edition (France)</label>
-    <select name="editeur" style="width:100%;" <% if !@selRef.isFr then %> disabled <% end %>>
-      <option <% if !@selRef.edition_id then %> selected <% end %>>-- Aucun --</option>
-      <%if @selEditeur then %>
-      <%= @allEditeurs.each do | iteEditeur | %>
-      <option value = "<%= iteEditeur.id %>" <% if iteEditeur.id == @selEditeur.id then %>selected<% end %>><%= iteEditeur.nom %></option>
-      <% end %>
-      <% else %>
-      <%= @allEditeurs.each do | iteEditeur | %>
-      <option value =<%= iteEditeur.id %>><%= iteEditeur.nom %></option>
-      <% end %>
-      <% end %>
-    </select>
-    <%= link_to "Ajouter un éditeur", "editeurs#new", target: :_blank %>
-  </div>
+    <div class="">
+        <%= label_tag "Edition (France)" %>
+        <%= f.select :edition_id, options_from_collection_for_select(Editeur.all, :id, :nom, @selRef.edition_id), include_blank: "Aucun" %>
+        <%= link_to "Ajouter un éditeur", "editeurs#new", target: :_blank %>
+    </div>
 
-  <div class="">
-    <label>Cette licence as-t'elle été adaptée en animé ?</label>
-    <input type="checkbox" name="isAnime" <% if @selRef.isAnime then %> checked <% end %>  />
-  </div>
+    <div class="">
+        <%= label_tag "Cette licence a-t'elle été adaptée en animé ?" %>
+        <%= f.check_box(:isAnime) %>
+    </div>
 
-  <div class="">
-    <label>Statut de diffusion</label>
-    <select name="difStatus" style="width:100%;" <% if !@selRef.isAnime then %> disabled <% end %>>
-      <option <% if @selRef.difStatus == "Terminée" then %> selected <% end %>>Terminée</option>
-      <option <% if @selRef.difStatus == "En cours de diffusion" then %> selected <% end %>>En cours de diffusion</option>
-      <option <% if @selRef.difStatus == "A venir" then %> selected <% end %>>A venir</option>
-    </select>
-  </div>
+    <div class="">
+        <%= label_tag "Statut de diffusion" %>
+        <%= f.select :difStatus, options_for_select([['Terminée', 'Terminée'], ["En cours de parution","En cours de parution"], ["A venir","A venir"]], @selRef.difStatus) %>
+    </div>
 
-  <div class="">
-    <label>Nombre total d'épisodes (Toutes saisons comprises)</label>
-    <input type="text" style="width:100%;" name="nbeptotal" value="<%= @selRef.nbEpTotal %>" <% if !@selRef.isAnime then %> disabled <% end %>/>
-  </div>
+    <div class="">
+        <%= label_tag "Nombre d'épisodes (Toutes saisons comprises)" %>
+        <%= f.text_field :nbEpTotal, class: "input" %>
+    </div>
 
-  <div class="">
-    <label>Nombre total d'OAV (Toutes saisons comprises)</label>
-    <input type="text" style="width:100%;" name="nboavtotal" value="<%= @selRef.nbOAVTotal %>" <% if !@selRef.isAnime then %> disabled <% end %>/>
-  </div>
+    <div class="">
+        <%= label_tag "Nombre d'OAVs (Toutes saisons comprises)" %>
+        <%= f.text_field :nbOAVTotal, class: "input" %>
+    </div>
 
-  <div class="">
-    <label>Nombre total de films</label>
-    <input type="text" style="width:100%;" name="nbfilmstotal" value="<%= @selRef.nbFilmsTotal %>" <% if !@selRef.isAnime then %> disabled <% end %>/>
-  </div>
+    <div class="">
+        <%= label_tag "Nombre de films (Toutes saisons comprises)" %>
+        <%= f.text_field :nbFilmsTotal, class: "input" %>
+    </div>
 
-  <div class="">
-    <label>Studio d'animation</label>
-    <select name="studio" style="width:100%;" <% if !@selRef.isAnime then %> disabled <% end %>>
-      <option <% if !@selRef.studio_id then %> selected <% end %>>-- Aucun --</option>
-      <%if @selStudio then %>
-      <%= @allStudios.each do | iteStudio | %>
-      <option value = "<%= iteStudio.id %>" <% if iteStudio.id == @selStudio.id then %>selected<% end %>><%= iteStudio.nom %></option>
-      <% end %>
-      <% else %>
-      <%= @allStudios.each do | iteStudio | %>
-      <option value =<%= iteStudio.id %>><%= iteStudio.nom %></option>
-      <% end %>
-      <% end %>
-    </select>
-    <%= link_to "Ajouter un studio", "studios#new", target: :_blank %>
-  </div>
+    <div class="">
+        <%= label_tag "Studio d'animation" %>
+        <%= f.select :studio_id, options_from_collection_for_select(Studio.all, :id, :nom, @selRef.studio_id), include_blank: "Aucun" %>
+        <%= link_to "Ajouter un studio", "studios#new", target: :_blank %>
+    </div>
 
-  <div class="">
-    <label>L'animé a t'il été licencié en France ?</label>
-    <input type="checkbox" name="isLicenced" <% if @selRef.isLicenced then %> checked <% end %> <% if !@selRef.isAnime then %> disabled <% end %> />
-  </div>
+    <div class="">
+        <%= label_tag "L'animé a t'il été licencié en France ?" %>
+        <%= f.check_box(:isLicenced) %>
+    </div>
 
-  <div class="">
-    <label>Licencié par</label>
-    <select name="licencer" style="width:100%;" <% if !@selRef.isLicenced then %> disabled <% end %>>
-      <option <% if !@selRef.licencer_id then %> selected <% end %>>-- Aucun --</option>
-      <%if @selLicencer then %>
-      <%= @allLicencers.each do | iteLicencer | %>
-      <option value = "<%= iteLicencer.id %>" <% if iteLicencer.id == @selLicencer.id then %>selected<% end %>><%= iteLicencer.nom %></option>
-      <% end %>
-      <% else %>
-      <%= @allLicencers.each do | iteLicencer | %>
-      <option value =<%= iteLicencer.id %>><%= iteLicencer.nom %></option>
-      <% end %>
-      <% end %>
-    </select>
-    <%= link_to "Ajouter un propriétaire de licence", "licencers#new", target: :_blank %>
-  </div>
+    <div class="">
+        <%= label_tag "Licencié par" %>
+        <%= f.select :licencer_id, options_from_collection_for_select(Licencer.all, :id, :nom, @selRef.licencer_id), include_blank: "Aucun" %>
+        <%= link_to "Ajouter un propriétaire de licence", "licencers#new", target: :_blank %>
+    </div>
 
-  <div class="">
-    <label>Licence</label>
-    <select name="licence" style="width:100%;">
-      <option <% if !@selRef.licencer_id then %> selected <% end %>>-- Aucun --</option>
-      <%if @selLicence then %>
-      <%= @allLicences.each do | iteLicence | %>
-      <option value = "<%= iteLicence.id %>" <% if iteLicence.id == @selLicence.id then %>selected<% end %>><%= iteLicence.nom %></option>
-      <% end %>
-      <% else %>
-      <%= @allLicences.each do | iteLicence | %>
-      <option value =<%= iteLicence.id %>><%= iteLicence.nom %></option>
-      <% end %>
-      <% end %>
-    </select>
-    <%= link_to "Ajouter une licence", "licences#new", target: :_blank %>
+    <div class="">
+        <%= label_tag "Licencié par" %>
+        <%= f.select :licence_id, options_from_collection_for_select(Licence.all, :id, :nom, @selRef.licence_id), include_blank: "Aucun" %>
+        <%= link_to "Ajouter une licence", "licences#new", target: :_blank %>
+    </div>
 
-  </div>
+    <div class="">
+        <%= label_tag "Rendre la référence visible ?" %>
+        <%= f.check_box(:isValidated) %>
+    </div>
 
-  <div class="">
-    <label>Rendre la référence visible</label>
-    <input type="checkbox" name="isValidated" <% if @selRef.isValidated then %> checked <% end %> />
-  </div>
-  <input type="submit" value="Enregistrer les modification" style="width:100%;" />
+    <%= f.submit "Enregistrer les modification" %>
 </div>
 <% end %>

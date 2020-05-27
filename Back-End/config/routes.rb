@@ -2,9 +2,9 @@ Rails.application.routes.draw do
 
   get 'licences/index'
 #===================================================== Front Office =====================================================#
-#ajouter une référence
-post 'ajouter' => "references#create"
-get 'ajouter' => "references#ajouter"
+    #ajouter une référence
+    post 'ajouter' => "references#create"
+    get 'ajouter' => "references#ajouter"
 
 #==============================================VIEW PAGES ==============================================#
   #Page d'accueil

@@ -19,7 +19,7 @@
       <p><%= @Note %></p>
     </div>
   <div class="user">
-    <%= image_tag "/imagesCover.jpg", width: "10%", height: "10%" %>
+    <%= image_tag "#{@selRef.cover_data}", class:"" %>
     <div class="hb">
       <div class="ph">
         <p>Titre original : <span><%= @selRef.orgTitre %></span></p>

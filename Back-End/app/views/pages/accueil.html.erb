@@ -22,7 +22,7 @@
     <div class="images">
       <div>
         <% @NewRef.each do |selRef| %>
-          <%= image_tag "Logos/contact.png", class:"miniature", width: "10%", height: "10%" %>
+          <%= image_tag "#{selRef.cover_data}", class:"miniature" %>
           <p><%= link_to selRef.titre, selRef.url %></p>
         <% end %>
       </div>
@@ -32,7 +32,7 @@
     <h5>Sponsorisé</h5>
     <div class="images">
       <% @SponsoRef.each do |selRef| %>
-        <%= image_tag "Logos/contact.png", class:"miniature", width: "10%", height: "10%" %>
+        <%= image_tag "#{selRef.cover_data}", class:"miniature" %>
         <p><%= link_to selRef.titre, selRef.url %></p>
       <% end %>
     </div>

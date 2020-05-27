@@ -25,11 +25,17 @@
       <article class="categories">
           <h5>Résultats</h5>
           <div class="images">
-            <% @Result.each do |selResult| %>
+            <% if @Result.count == 0 then %>
+            <div>
+                <p>Aucun résultat trouvé.</p>
+                <p><%= link_to "Ajouter une référence", "/ajouter" %></p>
+            </div>
+            <% else @Result.each do |selResult| %>
               <div>
                   <img class="miniature" src="img/References/Jojo's Bizarre Adventure/Cover.jpg" alt=""/>
                   <p><%= selResult.titre %></p>
               </div>
+            <% end %>
             <% end %>
           </div>
       </article>

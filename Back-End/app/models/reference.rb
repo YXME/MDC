@@ -1,3 +1,6 @@
+require 'carrierwave/orm/activerecord'
+
 class Reference < ActiveRecord::Base
-  include ImageUploader::Attachment.new(:cover)
+  #include ImagesUploader::Attachment.new(:cover)
+  mount_uploader :cover_data, CoverUploader
 end

@@ -94,62 +94,111 @@ class ReferencesController < ApplicationController
   end
 
   def apply_modification
-    @Ref = Reference.find_by(titre: params[:titre])
-    @Ref.titre = params[:titre]
-    @Ref.sousTitre = params[:sousTitre]
-    @Ref.orgTitre = params[:orgTitle]
-    @Ref.synopsis = params[:synopsis]
-    @Ref.parStatus = params[:parStatus]
-    @Ref.nbVolJp = params[:nbVolJp]
-    @Ref.nbVolFr = params[:nbVolFr]
-    @Ref.edition_id = params[:editeur]
-    @Ref.difStatus = params[:difStatus]
-    @Ref.nbEpTotal = params[:nbeptotal]
-    @Ref.nbOAVTotal = params[:nbOAVTotal]
-    @Ref.nbFilmsTotal = params[:nbfilmstotal]
-    @Ref.studio_id = params[:studio]
-    @Ref.licencer_id = params[:licencer]
-    @Ref.licence_id = params[:licence]
+    @Ref = Reference.find_by(url: params[:url])
 
-    if params[:isManga] then
+    if params[:reference][:titre] then
+        @Ref.titre = params[:reference][:titre]
+    end
+
+    if params[:reference][:sousTitre] then
+        @Ref.sousTitre = params[:reference][:sousTitre]
+    end
+
+    if params[:reference][:orgTitre] then
+        @Ref.orgTitre = params[:reference][:orgTitre]
+    end
+
+    if params[:reference][:synopsis] then
+        @Ref.synopsis = params[:reference][:synopsis]
+    end
+
+    if params[:reference][:parStatus] then
+        @Ref.parStatus = params[:reference][:parStatus]
+    end
+
+    if params[:reference][:nbVolJp] then
+        @Ref.nbVolJp = params[:reference][:nbVolJp]
+    end
+
+    if params[:reference][:nbVolFr] then
+        @Ref.nbVolFr = params[:reference][:nbVolFr]
+    end
+
+    if params[:reference][:editeur] then
+        @Ref.edition_id = params[:reference][:editeur]
+    end
+
+    if params[:reference][:difStatus] then
+        @Ref.difStatus = params[:reference][:difStatus]
+    end
+
+    if params[:reference][:nbEpTotal] then
+        @Ref.nbEpTotal = params[:reference][:nbEpTotal]
+    end
+
+    if params[:reference][:nbOAVTotal] then
+        @Ref.nbOAVTotal = params[:reference][:nbOAVTotal]
+    end
+
+    if params[:reference][:nbFilmsTotal] then
+        @Ref.nbFilmsTotal = params[:reference][:nbFilmsTotal]
+    end
+
+    if params[:reference][:studio] then
+        @Ref.studio_id = params[:reference][:studio]
+    end
+
+    if params[:reference][:licencer] then
+        @Ref.licencer_id = params[:reference][:licencer]
+    end
+
+    if params[:reference][:licence] then
+        @Ref.licence_id = params[:reference][:licence]
+    end
+
+    if params[:reference][:isManga] then
       @Ref.isManga = true
     else
       @Ref.isManga = false
     end
 
-    if params[:cover_data]
-      @temp_var = params[:cover_data].to_s
-      @Ref.cover_data = @temp_var.tr("\"", "\\\"")
+    if file = params[:reference][:cover_data] then
+        uploaded_file = params[:reference][:cover_data]
+        File.open(Rails.root.join('public', 'uploads', uploaded_file.original_filename), 'wb') do |file|
+            file.write(uploaded_file.read)
+        end
+        @Ref.cover_data = uploaded_file
     end
 
-    if params[:isLicenced] then
+
+    if params[:reference][:isLicenced] then
       @Ref.isLicenced = true
     else
       @Ref.isLicenced = false
     end
 
-    if params[:isFr] then
+    if params[:reference][:isFr] then
       @Ref.isFr = true
     else
       @Ref.isFr = false
     end
 
-    if params[:isValidated] then
+    if params[:reference][:isValidated] then
       @Ref.isValidated = true
     else
       @Ref.isValidated = false
     end
 
-    if params[:isAnime] then
+    if params[:reference][:isAnime] then
       @Ref.isAnime = true
     else
       @Ref.isAnime = false
     end
 
-    if params[:sousTitre] then
-      @Ref.url = params[:sousTitre].tr(" ", "_")
+    if params[:reference][:sousTitre] then
+      @Ref.url = params[:reference][:sousTitre].tr(" ", "_")
     else
-      @Ref.url = params[:titre].tr(" ", "_")
+      @Ref.url = params[:reference][:titre].tr(" ", "_")
     end
 
     @Ref.save()
@@ -206,6 +255,6 @@ class ReferencesController < ApplicationController
 
   private
     def patch_params
-      params.permit(:titre, :sousTitre, :orgTitre, :url, :synopsis, :licence_id, :note, :isManga, :isFr, :parStatus, :nbVolFr, :nbVolJp, :nbEpTotal, :nbOAVTotal, :nbFIlmsTotal, :studio_id, :licencer_id, :isSponso, :isValidated, :cover)
+      params.permit(:titre, :sousTitre, :orgTitre, :url, :synopsis, :licence_id, :note, :isManga, :isFr, :parStatus, :nbVolFr, :nbVolJp, :nbEpTotal, :nbOAVTotal, :nbFIlmsTotal, :studio_id, :licencer_id, :isSponso, :isValidated, :cover_data)
     end
 end

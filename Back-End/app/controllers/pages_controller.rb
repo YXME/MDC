@@ -10,7 +10,7 @@ class PagesController < ApplicationController
 
   def search
     if params[:search] then
-      @Result = Reference.select {|ref| ref.titre.include? params[:search] }.first(8)
+      @Result = Reference.select {|ref| ref.titre.downcase.include? params[:search].downcase }.first(8)
     end
   end
 

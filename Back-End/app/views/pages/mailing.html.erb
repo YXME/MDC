@@ -22,8 +22,8 @@
     <a href="https://facebook.com/MangaDigitalCollection"><%= image_tag "Logos/facebook.svg", class:"mail_logo", width: "10%", height: "10%" %></a>
     <a href="https://twitter.com/MangaDigitalCollection"><%= image_tag "Logos/twitter.svg", class:"mail_logo", width: "10%", height: "10%" %></a>
     <a href="https://reddit.com/MangaDigitalCollection"><%= image_tag "Logos/reddit.svg", class:"mail_logo", width: "10%", height: "10%" %></a>
-    <% mail_to "me@domain.com" do %>
-      <%= image_tag "Logos/gmail.svg", class:"mail_logo", width: "10%", height: "10%" %>
+    <%= mail_to "me@domain.com" do %>
+        <%= image_tag "Logos/gmail.svg", class:"mail_logo", width: "10%", height: "10%" %>
     <% end %>
     </div>
   </article>
