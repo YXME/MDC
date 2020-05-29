@@ -15,7 +15,7 @@ class LicencesController < ApplicationController
 
   def add_licence
     Licence.create nom: params[:nom]
-    redirect_back(fallback_location: fallback_location)
+    redirect_to "/licences/index"
   end
 
   def destroy_licence

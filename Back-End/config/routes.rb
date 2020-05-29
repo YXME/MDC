@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   delete  'licences/:id' => 'licences#destroy_licence'
   get 'licences/index'
   get 'licences/new'
-  post 'licences' => 'studios#add_licences'
+  post 'licences' => 'licences#add_licence'
 
   #page de modification de reference
   get ':url/modify' => 'references#modify'

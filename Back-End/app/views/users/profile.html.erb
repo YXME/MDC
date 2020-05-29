@@ -30,7 +30,7 @@
             <p>Visible uniquement par vous</p>
             <p>Adresse mail: <span><%= @currentUser.email %></span></p>
             <p>Mot de passe:<a href="#">Modifier</a></p>
-            <% if @cuurentUser.role != admin %><%= link_to "Supprimer le compte", "#{@currentUser.username}/suppression" %><% end %>
+            <% if @currentUser.role != "admin" %><%= link_to "Supprimer le compte", "#{@currentUser.username}/suppression" %><% end %>
           </div>
         <% end %>
       </div>

@@ -41,10 +41,10 @@ class ReferencesController < ApplicationController
         @Ref.difStatus = params[:difStatus]
         @Ref.nbEpTotal = params[:nbEpTotal]
         @Ref.nbOAVTotal = params[:nbOAVTotal]
-        @Ref.nbFilmsTotal = params[:nbEpTotal]
+        @Ref.nbFilmsTotal = params[:nbFilmsTotal]
         @Ref.studio_id = params[:studio_id]
         @Ref.licencer_id = params[:licencer_id]
-        @Ref.licence_id = Licence.create(nom: [:titre]).id
+        @Ref.licence_id = Licence.create(nom: params[:titre]).id
 
         if params[:isManga] then
             @Ref.isManga = true
@@ -74,6 +74,7 @@ class ReferencesController < ApplicationController
 
     def modify
         @selRef = Reference.find_by(url: params[:url])
+
         if @selRef.licence_id and @selRef.licence_id != 0
             @selLicence = Licence.find(@selRef.licence_id)
         end
@@ -84,13 +85,19 @@ class ReferencesController < ApplicationController
 
 
         if(@selRef.isManga and @selRef.isFr) then
-            @selEditeur = Editeur.find(@selRef.edition_id)
+            if @selRef.edition_id and @selRef.edition_id != 0
+                @selEditeur = Editeur.find(@selRef.edition_id)
+            end
         end
 
         if(@selRef.isAnime)
-            @selStudio = Studio.find(@selRef.studio_id)
+            if @selRef.studio_id and @selRef.studio_id != 0
+                @selStudio = Studio.find(@selRef.studio_id)
+            end
             if(@selRef.isLicenced)
-                @selLicencer = Licencer.find(@selRef.licencer_id)
+                if @selRef.licencer_id and @selRef.licencer_id != 0
+                    @selLicencer = Licencer.find(@selRef.licencer_id)
+                end
             end
         end
     end
