@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag "comments" %>
+<%= image_tag "Logos/MDC2.png", width: "50%" %>
+<h1>Ajouter un lien d'affiliation</h1>
+<%= form_with(url: "new", method: "post", local: true) do |f| %>
+<div class="form">
+
+    <div class="">
+        <%= label_tag "Référence" %>
+        <%= f.select :reference_id, options_from_collection_for_select(Reference.all, :id, :titre) %>
+    </div>
+
+    <div class="form_field">
+        <%= label_tag "Lien" %>
+        <%= f.text_field :link, class: "input" %>
+    </div>
+
+    <div class="">
+        <%= label_tag "Ordre" %>
+        <%= f.number_field(:orderNb, min: 1, step: 1) %>
+    </div>
+
+    <div class="">
+        <%= label_tag "Image d'illustration" %>
+        <%= f.file_field :image_data %>
+    </div>
+
+    <%= f.submit "Ajouter" %>
+<% end %>

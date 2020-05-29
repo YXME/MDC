@@ -46,88 +46,76 @@
       </div>
     </div>
   </div>
-
   </article>
+
     <article class="categories bio">
       <div class="title">
         <h6>Synopsis</h6>
       </div>
-        <span><p><%= @selRef.synopsis %></p></span>
+        <p style="text-align:left;"><%= @selRef.synopsis %></p>
     </article>
-    <article class="categories">
-        <div class="title">
-            <h6>Acheter</h6>
-        </div>
-        <div class="images">
-            <div>
-                <img class="miniature" src="img/References/Danganronpa/Danganronpa 2 Goodbye Despair/Cover.jpg" alt=""/>
-                <p>Danganronpa 2 - Goodbye Despair</p>
+
+    <% if @selAffiliates.count != 0 %>
+        <article class="categories">
+            <div class="title">
+                <h6>Acheter</h6>
             </div>
-            <div>
-                <img class="miniature" src="img/References/Danganronpa/Danganronpa 3 - The End Of Kibougamine Mirai-hen/Cover.jpg" alt=""/>
-                <p>Danganronpa 3 - The End Of Kibougamine Mirai-hen</p>
+            <div class="images">
+                <% @selAffiliates.each do |selAff| %>
+                <div>
+                    <%= link_to "#{selAff.link}" do %>
+                        <%= image_tag "#{selAff.image_data}", class:"miniature"%>
+                        <p>Tome <%= selAff.orderNb %></p>
+                    <% end %>
+                </div>
+                <% end %>
             </div>
-            <div>
-                <img class="miniature" src="img/References/Danganronpa/Danganronpa 3 - The End Of Kibougamine Zetsubou-hen/Cover.jpg" alt=""/>
-                <p>Danganronpa 3 - The End Of Kibougamine Zetsubou-hen</p>
-            </div>
-            <div>
-                <img class="miniature" src="img/References/A Certain Magical Index/Cover.jpg" alt=""/>
-                <p>A Certain Magical Index</p>
-            </div>
-            <div>
-                <img class="miniature" src="img/References/Death Note/Cover.jpg" alt=""/>
-                <p>Death Note</p>
-            </div>
-            <div>
-                <img class="miniature" src="img/References/ReZero/Cover.jpg" alt=""/>
-                <p>Re:Zero</p>
-            </div>
-            <div>
-                <img class="miniature" src="img/References/My Hero Academia/Cover.jpg" alt=""/>
-                <p>My Hero Academia</p>
-            </div>
-            <div>
-                <img class="miniature" src="img/References/Neon Genesis Evangelion/Cover.jpg" alt=""/>
-                <p>Neon Genesis Evangelion</p>
-            </div>
-        </div>
-    </article>
-    <% if @Comments then %>
+        </article>
+    <% end %>
+
       <article class="categories">
           <div class="title">
               <h6>Commentaires</h6>
-              <a href="#">Laisser un commentaire</a>
+              <a href="/comments/new">Laisser un commentaire</a>
           </div>
           <div class="commentaires">
-            <% @Comments.each do |iteComment| %>
+
+            <% @selComments.each do |iteComment| %>
               <div class="commentaire">
                   <div class="sender">
-                      <img src="img/dio_Brando.jpg" alt="profil-img">
                       <div class="right-part">
                           <div class="pseudo-wrapper">
-                              <div class="pseudo">Dio Brando</div>
-                              <div class="nb-commentaires">10 commentaires</div>
-                              <div class="stars"><% iteComment.note %></div>
+                              <div class="pseudo">
+                                  <a href="/users/<%= Utilisateur.find(iteComment.utilisateur_id).username %>">
+                                      <p><%= Utilisateur.find(iteComment.utilisateur_id).username %></p>
+                                  </a>
+                              </div>
+                              <div class="stars">
+                                  <p> - <%= iteComment.note %>★</p>
+                              </div>
                           </div>
                       </div>
                   </div>
-                  <p><%= iteComment.text %></p>
+                  <div class="pseudo-wrapper">
+                    <span><p><%= iteComment.comment %></p><span>
+                  <div class="pseudo-wrapper">
               </div>
+              <hr size="1px" color="#000000"/>
+
               <% end %>
             </div>
       </article>
-    <% end %>
-    <% if @linkRef then %>
+
+    <% if @linkRef.count != 0 then %>
     <article class="categories">
         <div class="title">
             <h6>Séries liées</h6>
         </div>
         <div class="images">
-            <% @linkRef.each do |linkRef| %>
+            <% @linkRef.each do |selLinkRef| %>
             <div>
-                <%= image_tag "#{linkRef.cover_data}", class:"miniature" %>
-                <a href="/<%= linkRef.url %>"><p><%= linkRef.titre %></p></a>
+                <%= image_tag "#{selLinkRef.cover_data}", class:"miniature" %>
+                <a href="/<%= selLinkRef.url %>"><p><%= selLinkRef.titre %></p></a>
             </div>
             <% end %>
         </article>

@@ -14,10 +14,11 @@
   <article class="categories">
     <div class="title">
       <h6><%= @currentUser.username %></h6>
-      <%= link_to "Déconnexion", "#{@currentUser.username}/destroy" %>
+      <% if @currentUser.role == "admin" %><%= link_to "Panel ADMIN", "/references/index" %><% end %>
+      <% if @ownProfile then %><%= link_to "Déconnexion", "#{@currentUser.username}/destroy" %><% end %>
     </div>
     <div class="user">
-      <img src="img/chepaki.jpg" alt="">
+      <%= image_tag "dio.jpg", class:"logo", width: "10%", height: "10%" %>
       <div class="hb">
         <div class="ph">
           <p>Nb de commentaires: <span><%= @currentUser.NbCom %></span></p>
@@ -29,7 +30,7 @@
             <p>Visible uniquement par vous</p>
             <p>Adresse mail: <span><%= @currentUser.email %></span></p>
             <p>Mot de passe:<a href="#">Modifier</a></p>
-            <a href="#">Supprimer le compte</a>
+            <% if @cuurentUser.role != admin %><%= link_to "Supprimer le compte", "#{@currentUser.username}/suppression" %><% end %>
           </div>
         <% end %>
       </div>
@@ -38,9 +39,9 @@
   <article class="categories bio">
     <div class="title">
       <h6>Biographie</h6>
-      <a href="#">Modifier</a>
+      <% if @ownProfile then %><a href="#">Modifier</a><% end %>
     </div>
-    <p><%= @currentUser.bio %></p>
+    <p style="text-align:left;"><%= @currentUser.bio %></p>
   </article>
 
   <% if @allListes.count > 0 then %>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% if @selRef.sousTitre then %>
+    <% if @selRef.sousTitre != nil and @selRef.sousTitre != "" then %>
       <title><%= @selRef.sousTitre %> - MangaDigitalCollection</title>
     <% else %>
       <title><%= @selRef.titre %> - MangaDigitalCollection</title>

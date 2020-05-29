@@ -4,7 +4,7 @@
 <h1>Ajouter une référence</h1>
 <%= link_to "Revenir à l'accueil", "/" %>
 
-<%= form_with(model: @Ref, url: "ajouter", method: "post", local: true) do |f| %>
+<%= form_with(url: "ajouter", method: "post", local: true) do |f| %>
 <div class="form">
     <div class="form_field">
         <%= label_tag "Titre" %>
@@ -33,7 +33,7 @@
 
     <div class="">
         <%= label_tag "Statut de parution" %>
-        <%= f.select :parStatus, options_for_select([['Terminée', 'Terminée'], ["En cours de parution","En cours de parution"], ["A venir","A venir"]], @Ref.parStatus) %>
+        <%= f.select :parStatus, options_for_select([['Terminée', 'Terminée'], ["En cours de parution","En cours de parution"], ["A venir","A venir"]]) %>
     </div>
 
     <div class="">
@@ -53,7 +53,7 @@
 
     <div class="">
         <%= label_tag "Edition (France)" %>
-        <%= f.select :edition_id, options_from_collection_for_select(Editeur.all, :id, :nom, @Ref.edition_id), include_blank: "Aucun" %>
+        <%= f.select :edition_id, options_from_collection_for_select(Editeur.all, :id, :nom), include_blank: "Aucun" %>
         <%= link_to "Ajouter un éditeur", "editeurs/new", target: :_blank %>
     </div>
 
@@ -64,7 +64,7 @@
 
     <div class="">
         <%= label_tag "Statut de diffusion" %>
-        <%= f.select :difStatus, options_for_select([['Terminée', 'Terminée'], ["En cours de parution","En cours de parution"], ["A venir","A venir"]], @Ref.difStatus) %>
+        <%= f.select :difStatus, options_for_select([['Terminée', 'Terminée'], ["En cours de parution","En cours de parution"], ["A venir","A venir"]]) %>
     </div>
 
     <div class="">
@@ -84,7 +84,7 @@
 
     <div class="">
         <%= label_tag "Studio d'animation" %>
-        <%= f.select :studio_id, options_from_collection_for_select(Studio.all, :id, :nom, @Ref.studio_id), include_blank: "Aucun" %>
+        <%= f.select :studio_id, options_from_collection_for_select(Studio.all, :id, :nom), include_blank: "Aucun" %>
         <%= link_to "Ajouter un studio", "studios/new", target: :_blank %>
     </div>
 
@@ -95,7 +95,7 @@
 
     <div class="">
         <%= label_tag "Licencié par" %>
-        <%= f.select :licencer_id, options_from_collection_for_select(Licencer.all, :id, :nom, @Ref.licencer_id), include_blank: "Aucun" %>
+        <%= f.select :licencer_id, options_from_collection_for_select(Licencer.all, :id, :nom), include_blank: "Aucun" %>
         <%= link_to "Ajouter un propriétaire de licence", "licencers/new", target: :_blank %>
     </div>
 

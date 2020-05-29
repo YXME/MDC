@@ -1,7 +1,7 @@
 .categories .title{
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid black;
+  border-bottom: 1.5px solid #1b24d1;
   padding-right: 1%;
   align-items: baseline;
 
@@ -13,6 +13,14 @@
 .user {
   display: flex;
   padding: .5vh .5vw;
+}
+
+.user .hb .ph p, span{
+    text-align: left;
+}
+
+.user .hb .pb p, span{
+    text-align: left;
 }
 
 .user img{

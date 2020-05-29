@@ -1,7 +1,15 @@
+.categories {
+    display: flex;
+    flex-direction: column;
+    margin: 3vh 0;
+    text-align: left;
+
+}
+
 .categories .title{
    display: flex;
    justify-content: space-between;
-   border-bottom: 1px solid black;
+   border-bottom: 1.5px solid #1b24d1;
    padding-right: 1%;
    align-items: baseline;
 }
@@ -21,6 +29,21 @@
    width: 15%;
    margin-right: 1vw;
 }
+
+.hb {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+}
+
+.user .hb .ph p, span{
+    text-align: left;
+}
+
+.user .hb .pb p, span{
+    text-align: left;
+}
+
 
 .user p span {
    color: black;
@@ -52,10 +75,11 @@ p {
    min-height: 10vh;
 }
 
-
 /* COMMENTAIRES */
 .commentaires {
     padding: .5vh .5vw;
+    display: flex;
+    flex-direction: column;
 }
 
 .commentaires .commentaire .sender {
@@ -69,11 +93,14 @@ p {
 
 .commentaires .commentaire .sender .pseudo-wrapper {
     display: flex;
-    align-items: center;
+    align-items: left;
 }
 
 .commentaires .commentaire {
     padding: .5vh 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .commentaires .commentaire .sender .pseudo-wrapper .nb-commentaires {
@@ -90,6 +117,8 @@ p {
 .commentaires .commentaire p {
     color: black;
     font-size: 1vw;
+    text-align: left;
+    overflow-wrap: break-word;
 }
 
 h6 {

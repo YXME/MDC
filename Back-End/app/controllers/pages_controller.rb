@@ -32,7 +32,7 @@ class PagesController < ApplicationController
 
   def save
       @current_user = Utilisateur.create(email: params[:email], username: params[:username], password: params[:password], NbCom: 0)
-      redirect_to "/"
+      redirect_to "/login"
   end
 
   def check

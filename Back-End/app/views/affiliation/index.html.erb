@@ -2,9 +2,9 @@
 <%= image_tag "Logos/MDC2.png", width: "50%" %>
 <header>
   <ul>
-    <li><%= link_to "Références", "index" %></li>
+    <li><%= link_to "Références", "/references/index" %></li>
     <li><%= link_to "Studios", "/studios/index" %></li>
-    <li><%= link_to "Editeurs", "/editeurs/index" %></li>
+    <li><%= link_to "Editeurs", "index" %></li>
     <li><%= link_to "Licences", "/licences/index" %></li>
     <li><%= link_to "Propriétaire de licences", "/licencers/index" %></li>
     <li><%= link_to "Utilisateurs", "/users/index" %></li>
@@ -12,8 +12,11 @@
     <li><%= link_to "Affiliations", "/affiliation/index" %></li>
   </ul>
 </header>
-  <h1>Références</h1>
-  <% @allRef.each do |selRef| %>
-    <a href="/<%= selRef.url %>/modify"><p><%= selRef.titre %></p></a>
+<h1>Liens d'affiliations</h1>
+<% @allAffiliates.each do |selAffiliates| %>
+  <p><%= selAffiliates.link %></p>
+  <%= form_tag "/affiliation/#{selAffiliates.id}", method: "delete" do %>
+  <input type="submit" value="Supprimer" />
   <% end %>
-<%= link_to "Ajouter une référence", "/ajouter" %>
+<% end %>
+<%= link_to "Ajouter un lien d'affiliation", "/affiliation/new" %>

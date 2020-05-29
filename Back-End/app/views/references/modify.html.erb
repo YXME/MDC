@@ -57,7 +57,7 @@
     <div class="">
         <%= label_tag "Edition (France)" %>
         <%= f.select :edition_id, options_from_collection_for_select(Editeur.all, :id, :nom, @selRef.edition_id), include_blank: "Aucun" %>
-        <%= link_to "Ajouter un éditeur", "editeurs#new", target: :_blank %>
+        <%= link_to "Ajouter un éditeur", "/editeurs/new", target: :_blank %>
     </div>
 
     <div class="">
@@ -88,7 +88,7 @@
     <div class="">
         <%= label_tag "Studio d'animation" %>
         <%= f.select :studio_id, options_from_collection_for_select(Studio.all, :id, :nom, @selRef.studio_id), include_blank: "Aucun" %>
-        <%= link_to "Ajouter un studio", "studios#new", target: :_blank %>
+        <%= link_to "Ajouter un studio", "/studios/new", target: :_blank %>
     </div>
 
     <div class="">
@@ -99,13 +99,13 @@
     <div class="">
         <%= label_tag "Licencié par" %>
         <%= f.select :licencer_id, options_from_collection_for_select(Licencer.all, :id, :nom, @selRef.licencer_id), include_blank: "Aucun" %>
-        <%= link_to "Ajouter un propriétaire de licence", "licencers#new", target: :_blank %>
+        <%= link_to "Ajouter un propriétaire de licence", "/licencers/new", target: :_blank %>
     </div>
 
     <div class="">
         <%= label_tag "Licence" %>
         <%= f.select :licence_id, options_from_collection_for_select(Licence.all, :id, :nom, @selRef.licence_id), include_blank: "Aucun" %>
-        <%= link_to "Ajouter une licence", "licences#new", target: :_blank %>
+        <%= link_to "Ajouter une licence", "/licences/new", target: :_blank %>
     </div>
 
     <div class="">

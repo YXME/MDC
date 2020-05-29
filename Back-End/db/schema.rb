@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_26_203501) do
+ActiveRecord::Schema.define(version: 2020_05_29_001130) do
 
   create_table "affiliates", force: :cascade do |t|
-    t.integer "reference_id", null: false
-    t.string "link", null: false
-    t.string "imageUrl", null: false
-    t.integer "orderNb", null: false
+    t.integer "reference_id"
+    t.string "link"
+    t.integer "orderNb"
+    t.text "image_data"
   end
 
   create_table "commentaires", force: :cascade do |t|

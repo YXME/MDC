@@ -15,6 +15,14 @@ class UsersController < ApplicationController
     redirect_to "/"
   end
 
+  def suppression
+      Utilisateur.find(session[:user_id]).destroy
+      session[:user_id] = nil
+      redirect_to "/"
+  end
+
+
+
   def profile
     if params[:username] then
       @currentUser = Utilisateur.find_by(username: params[:username])

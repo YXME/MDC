@@ -68,14 +68,22 @@ Rails.application.routes.draw do
   delete  'licencers/:id' => 'licencers#destroy_licencer'
   get 'licencers/index'
   get 'licencers/new'
-  post 'licencers' => 'studios#add_licencers'
+  post 'licencers' => 'licencers#add_licencer'
 
    #index de tout les commentaires
    get 'comments/index'
+   get 'comments/new' => 'comments#new'
+   post 'comments/new' => 'comments#create'
+
+   delete  'affiliation/:id' => 'affiliation#destroy_affiliation'
+   get 'affiliation/index'
+   get 'affiliation/new' => 'affiliation#new'
+   post 'affiliation/new' => 'affiliation#create'
 
    #Page de référence quelconque
    get ':url' => 'references#show'
-  get 'users/:username' => 'users#profile'
+   get 'users/:username' => 'users#profile'
+   get 'users/:username/suppression' => 'users#suppression'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

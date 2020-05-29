@@ -15,7 +15,7 @@ class StudiosController < ApplicationController
 
   def add_studio
     Studio.create nom: params[:nom]
-    redirect_back(fallback_location: fallback_location)
+    #redirect_back(fallback_location: fallback_location)
   end
 
   def destroy_studio
