@@ -55,4 +55,4 @@ gem 'sequel'
 
 gem 'carrierwave', '~> 2.0'
 
-gem 'shrine', '~> 2.8'
+gem 'shrine', '~> 3.3'
